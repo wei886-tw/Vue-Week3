@@ -48,7 +48,7 @@
                         <td class="text-end">{{product.origin_price}}</td>
                         <td class="text-end">{{product.price}}</td>
                         <td>
-                            <span class="text-success">啟用</span>
+                            <span class="text-success" v-if="is_enabled ?  '啟用':'未啟用">啟用</span>
                             <span>未啟用</span>
                         </td>
                         <td>
@@ -83,17 +83,17 @@
                                 <div class="mb-2">
                                     <div class="mb-3">
                                         <label for="imageUrl" class="form-label">輸入圖片網址</label>
-                                        <input type="text" class="form-control" placeholder="請輸入圖片連結" v-model="tempProduct.imageUrl">
+                                        <input type="text" class="form-control" placeholder="請輸入圖片連結" v-model="tempProduct.imagesUrl">
                                     </div>
                                     <img class="img-fluid" src="" alt="">
                                 </div>
                                 <div>
-                                    <button class="btn btn-outline-primary btn-sm d-block w-100">
+                                    <button class="btn btn-outline-primary btn-sm d-block w-100" @click="addImg">
                                         新增圖片
                                     </button>
                                 </div>
-                                <!-- <div v-else> -->
-                                <div>
+                            
+                                <div v-else>
                                     <button class="btn btn-outline-danger btn-sm d-block w-100">
                                         刪除圖片
                                     </button>

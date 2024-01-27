@@ -85,6 +85,10 @@ const app = createApp({
       };
     },
 
+    addImg(){
+      this.imagesUrl
+    },
+
     checkAdmin() {
       const link = `${this.url}/api/user/check`;
       axios
