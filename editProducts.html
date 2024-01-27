@@ -48,8 +48,8 @@
                         <td class="text-end">{{product.origin_price}}</td>
                         <td class="text-end">{{product.price}}</td>
                         <td>
-                            <span class="text-success" v-if="is_enabled ?  '啟用':'未啟用">啟用</span>
-                            <span>未啟用</span>
+                            <span class="text-success" v-if="product.is_enabled">啟用</span>
+                            <span v-else class="text-alert" >未啟用</span>
                         </td>
                         <td>
                             <div class="btn-group">
