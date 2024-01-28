@@ -11,6 +11,7 @@ const app = createApp({
       allProducts: [],
       isNew: false,
       tempProduct: {
+        imageUrl: [],
         imagesUrl: [],
       },
     };
@@ -19,13 +20,16 @@ const app = createApp({
   methods: {
     openModal(status, product) {
       if (status === 'new') {
-        this.tempProduct = {};
+        this.tempProduct = {
+          imagesUrl: [],
+        };
         this.isNew = true;
         productModal.show();
       }
 
       else if (status === 'edit') {
         this.tempProduct = { ...product };
+        this.new = false;
         productModal.show();
       }
 
@@ -44,6 +48,7 @@ const app = createApp({
           console.log(err);
         });
     },
+
     delProduct() {
       axios.delete(`${this.url}/v2/api/${this.api_path}/admin/product/${this.tempProduct.id}`)
         .then(res => {
@@ -62,31 +67,30 @@ const app = createApp({
             productModal.hide();
             alert("新增產品成功");
             this.isNew = false;
+            this.tempProduct = {};
             this.getProducts();
 
           })
           .catch(err => {
-            console.log(err)
-            console.log(this.tempProduct.isNew);
+            alert(err.data.message)
           });
       }
-      else if (this.isNew == false){
+      else if (this.isNew == false) {
         axios.put(`${this.url}/v2/api/${this.api_path}/admin/product/${this.tempProduct.id}`, { data: this.tempProduct })
           .then(res => {
             productModal.hide();
             alert("編輯產品成功");
             this.getProducts();
-            this.tempProduct = {}
+            this.tempProduct = {};
           })
           .catch(err => {
-            console.log(err);
-            console.log(this.isNew)
+            alert(err.data.message)
           });
       };
     },
 
-    addImg(){
-      this.imagesUrl
+    addImg() {
+      this.imagesUrl;
     },
 
     checkAdmin() {
